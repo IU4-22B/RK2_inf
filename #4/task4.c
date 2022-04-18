@@ -10,7 +10,6 @@
     4 // это N 
     aaa bBb cccc ddd eee fff 
     Result: a b c d
-
 */
 
 #include <stdio.h>

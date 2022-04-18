@@ -10,7 +10,6 @@
     aaa bBb  
     cccc ddd 
     Result: aaa bBb cccc ddd
-
 */
 
 #include <stdio.h>

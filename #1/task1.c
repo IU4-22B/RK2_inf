@@ -11,7 +11,6 @@
     3 // это N 
     4 1 6 39 9 2 7 
     Result: 39 9 7 
-
 */
 
 #include <stdio.h>
