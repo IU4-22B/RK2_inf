@@ -35,8 +35,58 @@ Sample Output 4:
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <ctype.h>
+
+
+
+
+int search_max(int ASCII[256]) {
+    int max = 0;
+    int cell = 0;
+    for (int i = 1; i < 256; i++) {
+        if (max < ASCII[i]) {
+            max = ASCII[i];
+            cell = i;
+        }
+    }
+    ASCII[cell] = 0;
+    return cell;
+}
 
 int main() {
+    int counter = 0;
+    int symbol;
+
+    /*char* pString = (char*)malloc(counter * sizeof(char));
+    (if (pString == NULL) {
+        printf("Error memory allocate");
+        return 1;
+    }*/
+
+    /*while (symbol = getchar() != EOF) {
+        pString = (char*)realloc(pString, (counter+1) * sizeof(char));
+        /*if (pString == NULL) {
+            printf("Error memory allocate");
+            return 1;
+        }*/
+        /**(pString + counter) = symbol;
+        counter++;
+    }
+
+    for (int i = 0; i < counter; i++) printf("%c ", *pString+i));*/
+    char array[100] = "aaa bBb cccc ddd eee fff";
+    int N = 4;
+    int ASCII[256] = { 0 };
+    for (int i = 0; i < sizeof(array); i++) ASCII[tolower(array[i])]++;
+    ASCII[' '] = 0;
+    for (int i = 1; i < 256; i++) if (ASCII[i] > 0) printf("%c: %d\n\r", i, ASCII[i]);
+
+    int inter_array[256] = {0};
+    for (int i = 0; i < N; i++) {
+        inter_array[i] = search_max(ASCII);
+    }
+    
+    for (int i = 0; i < N; i++) printf("%c ", inter_array[i]);
 
     return 0;
 }
