@@ -33,7 +33,33 @@ Sample Output 3:
 #include <stdio.h>
 #include <stdlib.h>
 
-int main() {
+int main(void) {
+    size_t count = 0;
+    size_t N;
+    int x;
+    int *numbers;
+
+    scanf("%ld", &N);
+    if (N == 0)
+        return 0;
+
+    numbers = (int *) malloc(N * sizeof(int));
+    if (numbers == NULL) {
+        printf("Allocation error!\n");
+        return 1;
+    }
+
+    /* Считывание чисел и добавление чётных в массив */
+    while (scanf("%d", &x) != EOF && count < N)
+        if (x % 2 == 0)
+            numbers[count++] = x;
+
+    /* Распечатка встретившихся чётных чисел */
+    for (int i = 0; i < count; ++i)
+        printf("%d ", numbers[i]);
+    printf("\n");
+
+    free(numbers);
 
     return 0;
 }
