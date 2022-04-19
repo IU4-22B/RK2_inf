@@ -55,7 +55,7 @@ int main(void) {
             numbers[count++] = x;
 
     /* Распечатка встретившихся чётных чисел */
-    for (int i = 0; i < count; ++i)
+    for (size_t i = 0; i < count; ++i)
         printf("%d ", numbers[i]);
     printf("\n");
 
