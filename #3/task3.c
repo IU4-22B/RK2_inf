@@ -38,7 +38,32 @@ Sample Output 4:
 #include <stdio.h>
 #include <stdlib.h>
 
-int main() {
+int main(void) {
+    size_t N;
+    size_t count = 0;
+    int x;
+    int *numbers;
+
+    scanf("%ld", &N);
+    if (N == 0)
+        return 0;
+
+    numbers = (int *) malloc(N * sizeof(int));
+    if (numbers == NULL) {
+        printf("Allocation error!\n");
+        return 1;
+    }
+
+    /* Считывание чисел */
+    while (scanf("%d", &x) != EOF && count < N)
+        numbers[count++] = x;
+
+    /* Распечатка массива в обратном порядке */
+    for (size_t i = count; i > 0;)
+        printf("%d ", numbers[--i]);
+    printf("\n");
+
+    free(numbers);
 
     return 0;
 }
