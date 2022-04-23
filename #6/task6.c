@@ -37,7 +37,63 @@ Sample Output 4:
 #include <stdio.h>
 #include <stdlib.h>
 
-int main() {
+void swap(int *Array, int index1, int index2) {
+    int tmp = Array[index1];
+    Array[index1] = Array[index2];
+    Array[index2] = tmp;
+}
+
+int partition(int *Array, int left, int right) {
+    int pivot = Array[right];
+    int i = left - 1;
+    i = left - 1;
+    for (int j = left; j != right; ++j)
+        if (Array[j] <= pivot)
+            swap(Array, ++i, j);
+    swap(Array, i + 1, right);
+    return i + 1;
+}
+
+void quick_sort(int *Array, int left, int right) {
+    if (left < right) {
+        int mid = partition(Array, left, right);
+        quick_sort(Array, left, mid - 1);
+        quick_sort(Array, mid + 1, right);
+    }
+}
+
+int main(void) {
+    size_t count = 0;
+    size_t N;
+    size_t cnt = 0;
+    int x;
+    int *numbers;
+
+    scanf("%ld", &N);
+    if (N == 0)
+        return 0;
+
+    numbers = (int *) malloc(N * sizeof(int));
+    if (numbers == NULL) {
+        printf("Allocation error!\n");
+        return 1;
+    }
+
+    /* Считывание чисел и добавление нечётных в массив */
+    while (scanf("%d", &x) != EOF && cnt < N) {
+        ++cnt;
+        if (x % 2 == 1)
+            numbers[count++] = x;
+    }
+
+    quick_sort(numbers, 0, count-1);
+    
+    /* Распечатка встретившихся нечётных чисел */
+    for (size_t i = 0; i < count; ++i)
+        printf("%d ", numbers[i]);
+    printf("\n");
+
+    free(numbers);
 
     return 0;
 }
